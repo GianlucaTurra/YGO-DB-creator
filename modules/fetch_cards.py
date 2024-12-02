@@ -1,7 +1,6 @@
 import requests
 
 from models.card import Card
-from models.card_set import CardSet
 
 
 def fetch_cards():
@@ -14,8 +13,12 @@ def fetch_cards():
             name=entry['name'],
             type=entry['type'],
             race=entry['race'],
-            archetpye=entry['archetype']
+            desc=entry['desc']
         )
+        try:
+            card.archetype = entry['archetype']
+        except KeyError:
+            pass
         if entry['type'] in monster_types:
             card.attack = entry['atk']
             card.defence = entry['defence']

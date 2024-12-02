@@ -9,13 +9,14 @@ class Card(Base):
     __tablename__ = "card"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String)
-    type = Column(String)
+    name = Column(String, unique=True, nullable=False)
+    type = Column(String, nullable=False)
     race = Column(String)
     attack = Column(Integer)
     defence = Column(Integer)
     level = Column(Integer)
     attribute = Column(String)
     archetype = Column(String)
-    sets = relationship("CardSet", secondary=card_association, back_populates="cards")
+    card_sets = relationship("CardSet", secondary=card_association, back_populates="cards")
     image = Column(String)
+    desc = Column(String)
