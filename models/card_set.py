@@ -11,7 +11,7 @@ class CardSet(Base):
     __tablename__ = "card_set"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String)
-    code = Column(String)
+    name = Column(String, unique=True)
+    code = Column(String, unique=True)
     release_date = Column(Date)
     cards = relationship("Card", secondary=card_association, back_populates="card_sets")
